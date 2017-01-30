@@ -1,9 +1,6 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-http.createServer( function(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World');
-}).listen(3000);
-
-
-console.log("Server is up and running!");
+app.listen(3000, function() {
+  console.log("Express up and running on port 3000.");
+});
