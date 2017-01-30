@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var Bear = require('./models/bear');
 
 mongoose.connect('mongodb://localhost/fullstack-bears');
 
