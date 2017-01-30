@@ -1,20 +1,11 @@
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
 
-app.get('/', function(req, res) {
-  res.send("welcome 2 heck.")
-});
+mongoose.connect('mongodb://localhost/fullstack-bears');
 
-app.get('/:user', function(req, res) {
-  res.send("welcome 2 heck " + req.params.user + ".")
-});
-
-app.get('/api/happy_greeting', function(req, res) {
-  res.send("monday! welcome!")
-});
-
-app.get('/api/sad_greeting', function(req, res) {
-  res.send("still monday. go home.")
+app.get('/api/bears', function(req, res) {
+  res.json({message: "Bears route"});
 });
 
 app.listen(3000, function() {
