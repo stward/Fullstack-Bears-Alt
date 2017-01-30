@@ -10,7 +10,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/api/bears', function(req, res) {
-  res.json({message: "Bears route"});
+  Bear.find(function(err, data) {
+    if(err) {
+      console.log(err, "Error finding bears");
+    } else {
+      res.json(data);
+    }
+  });
 });
 
 app.post('/api/bears', function(req, res) {
@@ -32,6 +38,18 @@ app.post('/api/bears', function(req, res) {
     }
   });
 
+});
+
+app.get('/api/bears/:bear_id', function(req, res) {
+  Bear.find(function(err, data) {
+    Bear.findById(req.params.bear_id, function(err, bearData) {
+      if(err) {
+        console.log(err, "Error finding this bear");
+      } else {
+        res.json(bearData);
+      }
+    });
+  });
 });
 
 app.listen(3000, function() {
