@@ -52,6 +52,32 @@ app.get('/api/bears/:bear_id', function(req, res) {
   });
 });
 
+app.put('/api/bears/:bear_id', function(req, res) {
+  Bear.find(function(err, data) {
+    Bear.findById(req.params.bear_id, function(err, bearData) {
+      if(err) {
+        console.log(err, "Error finding this bear");
+      } else {
+
+        bearData.name = req.body.name ? req.body.name : bearData.name;
+        bearData.species = req.body.species ? req.body.species : bearData.species;
+        bearData.age = req.body.age ? req.body.age : bearData.age;
+        bearData.weight = req.body.weight ? req.body.weight : bearData.weight;
+        bearData.location = req.body.location ? req.body.location : bearData.location;
+        bearData.attitude = req.body.attitude ? req.body.attitude : bearData.attitude;
+
+        bearData.save(function(e, updatedBear) {
+          if (e) {
+            console.log(e, "Error updating bear");
+          } else {
+            res.json(updatedBear);
+          }
+        });
+      }
+    });
+  });
+});
+
 app.listen(3000, function() {
   console.log("Express up and running on port 3000.");
 });
