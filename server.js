@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
   var date = moment();
-  res.render('index', {name: "Spencer", date: moment().format("MMM Do YYYY"), time: date.format("hh:mm")});
+  res.render('index', {name: "Spencer", date: moment().format("MMM Do YYYY"), time: date.format("hh:mm"), title: "Home"});
 });
 
 app.get('/bears', function(req, res) {
@@ -22,7 +22,7 @@ app.get('/bears', function(req, res) {
     if(err) {
       console.log(err, "Error finding bears");
     } else {
-      res.render('bears', {bears: data});
+      res.render('bears', {bears: data, title: "The Bears"});
     }
   });
 });
