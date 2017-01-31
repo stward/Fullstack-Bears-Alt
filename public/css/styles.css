@@ -1,6 +1,11 @@
 body {
   background: darkturquoise;
 }
+.jumbotron {
+  background: url('../images/bear.jpg') top right no-repeat;
+  background-color: black;
+  color: white;
+}
 .spacer30 {
   height: 30px;
 }
