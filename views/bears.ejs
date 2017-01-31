@@ -24,25 +24,37 @@
     <div class="col-md-6">
       <h3>New Bear</h3>
       <form method="POST" action="/api/bears">
+        <div class="form-group">
         <label for="name">Name
-          <input type="text" name="name"></input>
+          <input id="name" class="form-control" type="text" name="name"></input>
         </label>
-        <label for="age">Age
-          <input type="text" name="age"></input>
-        </label>
-        <label for="species">Species
-          <input type="text" name="species"></input>
-        </label>
-        <label for="weight">Weight
-          <input type="text" name="weight"></input>
-        </label>
-        <label for="location">Location
-          <input type="text" name="location"></input>
-        </label>
-        <label for="attitude">Attitude
-          <input type="text" name="attitude"></input>
-        </label>
-        <input type="submit" class="btn btn-primary"></input>
+        </div>
+        <div class="form-group">
+          <label for="age">Age
+            <input id="age" class="form-control" type="text" name="age"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="species">Species
+            <input id="species" class="form-control" type="text" name="species"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight
+            <input id="weight" class="form-control" type="text" name="weight"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="location">Location
+            <input id="location" class="form-control" type="text" name="location"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="attitude">Attitude
+            <input id="attitude" class="form-control" type="text" name="attitude"></input>
+          </label>
+        </div>
+        <input type="submit" class="btn btn-default"></input>
       </form>
     </div>
   </div>
