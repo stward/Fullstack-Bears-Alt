@@ -10,6 +10,8 @@ mongoose.connect('mongodb://localhost/fullstack-bears');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static('public'));
+
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
