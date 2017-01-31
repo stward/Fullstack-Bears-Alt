@@ -54,7 +54,7 @@ app.post('/api/bears', function(req, res) {
     if(err) {
       console.log(err, "error with your bear");
     } else {
-      res.json(bearData);
+      res.redirect('/bears')
     }
   });
 
