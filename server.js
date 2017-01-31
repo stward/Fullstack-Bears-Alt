@@ -9,6 +9,8 @@ mongoose.connect('mongodb://localhost/fullstack-bears');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.set('view engine', 'ejs');
+
 app.get('/api/bears', function(req, res) {
   Bear.find(function(err, data) {
     if(err) {
@@ -41,40 +43,46 @@ app.post('/api/bears', function(req, res) {
 });
 
 app.get('/api/bears/:bear_id', function(req, res) {
-  Bear.find(function(err, data) {
-    Bear.findById(req.params.bear_id, function(err, bearData) {
-      if(err) {
-        console.log(err, "Error finding this bear");
-      } else {
-        res.json(bearData);
-      }
-    });
+  Bear.findById(req.params.bear_id, function(err, bearData) {
+    if(err) {
+      console.log(err, "Error finding this bear");
+    } else {
+      res.json(bearData);
+    }
   });
 });
 
 app.put('/api/bears/:bear_id', function(req, res) {
-  Bear.find(function(err, data) {
-    Bear.findById(req.params.bear_id, function(err, bearData) {
-      if(err) {
-        console.log(err, "Error finding this bear");
-      } else {
+  Bear.findById(req.params.bear_id, function(err, bearData) {
+    if(err) {
+      console.log(err, "Error finding this bear");
+    } else {
 
-        bearData.name = req.body.name ? req.body.name : bearData.name;
-        bearData.species = req.body.species ? req.body.species : bearData.species;
-        bearData.age = req.body.age ? req.body.age : bearData.age;
-        bearData.weight = req.body.weight ? req.body.weight : bearData.weight;
-        bearData.location = req.body.location ? req.body.location : bearData.location;
-        bearData.attitude = req.body.attitude ? req.body.attitude : bearData.attitude;
+      bearData.name = req.body.name ? req.body.name : bearData.name;
+      bearData.species = req.body.species ? req.body.species : bearData.species;
+      bearData.age = req.body.age ? req.body.age : bearData.age;
+      bearData.weight = req.body.weight ? req.body.weight : bearData.weight;
+      bearData.location = req.body.location ? req.body.location : bearData.location;
+      bearData.attitude = req.body.attitude ? req.body.attitude : bearData.attitude;
 
-        bearData.save(function(e, updatedBear) {
-          if (e) {
-            console.log(e, "Error updating bear");
-          } else {
-            res.json(updatedBear);
-          }
-        });
-      }
-    });
+      bearData.save(function(e, updatedBear) {
+        if (e) {
+          console.log(e, "Error updating bear");
+        } else {
+          res.json(updatedBear);
+        }
+      });
+    }
+  });
+});
+
+app.delete('/api/bears/:bear_id', function(req, res) {
+  Bear.remove({_id: req.params.bear_id}, function(err, bearData) {
+    if(err) {
+      console.log(err, "Could not delete for some reason.");
+    } else {
+      res.json({message: "Bear deleted."});
+    }
   });
 });
 
