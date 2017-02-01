@@ -29,6 +29,16 @@ app.get('/bears', function(req, res) {
   });
 });
 
+app.get('/bear_view/:bear_id', function(req, res) {
+  Bear.findById(req.params.bear_id, function(err, bearData) {
+    if(err) {
+      console.log(err, "Error finding bears");
+    } else {
+      res.render('bear_view', {bear: bearData, title: "Bear"});
+    }
+  });
+});
+
 app.get('/api/bears', function(req, res) {
   Bear.find(function(err, data) {
     if(err) {
@@ -54,7 +64,7 @@ app.post('/api/bears', function(req, res) {
     if(err) {
       console.log(err, "error with your bear");
     } else {
-      res.redirect('/bears')
+      res.redirect('/bears');
     }
   });
 
@@ -70,7 +80,7 @@ app.get('/api/bears/:bear_id', function(req, res) {
   });
 });
 
-app.put('/api/bears/:bear_id', function(req, res) {
+app.post('/api/bears/:bear_id', function(req, res) {
   Bear.findById(req.params.bear_id, function(err, bearData) {
     if(err) {
       console.log(err, "Error finding this bear");
@@ -87,7 +97,7 @@ app.put('/api/bears/:bear_id', function(req, res) {
         if (e) {
           console.log(e, "Error updating bear");
         } else {
-          res.json(updatedBear);
+          res.redirect('/bears');
         }
       });
     }

@@ -13,10 +13,12 @@
       %>
         <div>Bear <%= i + 1 %></div>
         <div>Name: <%= b[i].name %></div>
+        <div>Age: <%= b[i].age %></div>
         <div>Species: <%= b[i].species %></div>
         <div>Weight: <%= b[i].weight %></div>
         <div>Location: <%= b[i].location %></div>
         <div>Attitude: <%= b[i].attitude %></div>
+        <a href="/bear_view/<%= b[i]._id %>" class="btn btn-primary">View</a>
         <button id="<%= b[i]._id %>" type="button" class="btn btn-danger delete">Delete</button>
         <div class="spacer30"></div>
       <% } %>

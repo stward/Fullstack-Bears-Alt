@@ -1,0 +1,58 @@
+<% include ../views/header %>
+<div class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <h1>The Bears</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%
+        var b = bear;
+      %>
+        <div>Name: <%= b.name %></div>
+        <div>Species: <%= b.species %></div>
+        <div>Weight: <%= b.weight %></div>
+        <div>Location: <%= b.location %></div>
+        <div>Attitude: <%= b.attitude %></div>
+        <div class="spacer30"></div>
+    </div>
+    <div class="col-md-6">
+      <h3>Update Bear</h3>
+      <form method="POST" action="/api/bears/<%= b._id %>">
+        <div class="form-group">
+        <label for="name">Name
+          <input id="name" class="form-control" type="text" name="name" required value="<%= b.name %>"></input>
+        </label>
+        </div>
+        <div class="form-group">
+          <label for="age">Age
+            <input id="age" class="form-control" type="text" name="age" value="<%= b.age %>"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="species">Species
+            <input id="species" class="form-control" type="text" name="species" value="<%= b.species %>"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight
+            <input id="weight" class="form-control" type="text" name="weight" value="<%= b.weight %>"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="location">Location
+            <input id="location" class="form-control" type="text" name="location" value="<%= b.location %>"></input>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="attitude">Attitude
+            <input id="attitude" class="form-control" type="text" name="attitude" value="<%= b.attitude %>"></input>
+          </label>
+        </div>
+        <input type="submit" class="btn btn-default" value="Update Bear"></input>
+      </form>
+    </div>
+  </div>
+</div>
+<% include ../views/footer %>
